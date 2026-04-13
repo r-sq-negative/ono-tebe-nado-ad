@@ -12,37 +12,52 @@
 }
 
 /* ==========================================
-   ШАПКА
+   ШАПКА (белый фон, чёрный текст)
    ========================================== */
 .header {
   display: grid;
   grid-template-columns: 1fr min-content 1fr;
   align-items: center;
-  padding: 20px 50px;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  padding: 30px 50px;
+  background-color: var(--color-white);
+  color: var(--color-black);
 }
 
 /* Меню */
-.header__menu {
-  /* nav container */
-}
-
 .header__links-list {
   display: flex;
   flex-direction: row;
-  gap: 20px;
-  list-style: circle;
-  padding-left: 20px;
+  gap: 30px;
+  list-style: none;
+  padding-left: 0;
+  align-items: center;
 }
 
-.header__links-list-item_no-bullit {
-  list-style: none;
+.header__links-list-item {
+  position: relative;
+  font-size: 12px;
+}
+
+/* Маркеры-кружочки между пунктами меню */
+.header__links-list-item + .header__links-list-item::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.header__links-list-item_no-bullit::before {
+  display: none !important;
 }
 
 .header__link {
   text-decoration: none;
-  color: var(--color-white);
+  color: var(--color-black);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -59,7 +74,7 @@
 /* Логотип */
 .header__logo {
   display: block;
-  width: 160px;
+  width: 90px;
 }
 
 .header__logo-image {
@@ -73,15 +88,21 @@
 }
 
 .header__address {
-  max-width: 160px;
+  max-width: 200px;
   justify-self: end;
   text-align: right;
   font-size: 12px;
   line-height: 1.6;
+  color: var(--color-black);
+}
+
+.header__address a {
+  color: var(--color-black);
+  text-decoration: underline;
 }
 
 /* ==========================================
-   ОВЕРЛЕЙ (переиспользуемый класс)
+   ОВЕРЛЕЙ
    ========================================== */
 .overlay {
   position: absolute;
@@ -101,34 +122,39 @@
   background-position: center;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 60px 50px;
   color: var(--color-white);
 }
 
+/* Заголовок: слова разнесены по строке (justify) */
 .cover__title {
   position: relative;
   z-index: 2;
-  font-size: 150px;
+  font-size: 100px;
   font-weight: bold;
-  line-height: 1;
+  line-height: 1.15;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
-/* Выравнивание слов заголовка */
+/* Каждая строка заголовка — flex с распределением слов по ширине */
 .aligned-text {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
+/* Сохраняем модификаторы (если в HTML используются для отдельных слов) */
 .aligned-text_center {
-  align-self: center;
+  justify-content: center;
 }
 
 .aligned-text_right {
-  align-self: flex-end;
+  justify-content: flex-end;
 }
 
 .letter-spacing-extended {
@@ -139,56 +165,62 @@
   letter-spacing: 0;
 }
 
-/* Блок описания обложки */
+/* Блок описания обложки: текст слева, кнопка справа */
 .cover__description {
   position: relative;
   z-index: 2;
-  margin-top: 20px;
+  margin-top: 60px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 400px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
 }
 
 .cover__description-text {
-  font-size: 18px;
-  word-spacing: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
   line-height: 1.5;
+  margin: 0;
+  flex: 1;
 }
 
 /* Кнопка ставки */
 .bet-button {
-  border: 2px solid var(--color-white);
+  border: 1px solid var(--color-accent);
   background: transparent;
-  color: var(--color-white);
-  padding: 14px 40px;
+  color: var(--color-accent);
+  padding: 18px 40px;
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   cursor: pointer;
-  align-self: flex-start;
+  white-space: nowrap;
   transition: background-color 0.2s, color 0.2s;
 }
 
 .bet-button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* ==========================================
+   СЕКЦИЯ ЛОТОВ (белый фон)
+   ========================================== */
+.lots {
+  padding: 60px 50px;
   background-color: var(--color-white);
   color: var(--color-black);
 }
 
-/* ==========================================
-   СЕКЦИЯ ЛОТОВ
-   ========================================== */
-.lots {
-  padding: 60px 50px;
-  background-color: var(--color-black);
-  color: var(--color-white);
-}
-
 .lots__heading {
   font-size: 30px;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 40px;
+  letter-spacing: 0.05em;
+  margin-bottom: 30px;
 }
 
 /* Список карточек */
@@ -198,7 +230,7 @@
   gap: 20px;
   list-style: none;
   padding: 0;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .lots__card-list-item {
@@ -213,47 +245,59 @@
   color: inherit;
 }
 
-/* Карточка */
+/* Карточка — текст сверху, картинка снизу */
 .card {
   position: relative;
   height: 100%;
   min-height: var(--card-min-height);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding: 20px;
   background-size: cover;
-  background-position: center;
+  background-position: center bottom;
   color: var(--color-white);
 }
 
-/* Фоны карточек */
+/* Тёмная подложка под текстом сверху */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 50% 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75), rgba(0,0,0,0));
+  z-index: 1;
+}
+
 .card_type_film {
-  background-image: url(../images/film.jpg);
+  background-image: url(../images/card-lot-01.jpg);
 }
 
 .card_type_book {
-  background-image: url(../images/book.jpg);
+  background-image: url(../images/card-lot-02.jpg);
 }
 
 .card_type_picture {
-  background-image: url(../images/picture.jpg);
+  background-image: url(../images/card-lot-03.jpg);
 }
 
 .card__title {
   position: relative;
   z-index: 2;
-  font-size: 22px;
+  font-size: 18px;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  margin-bottom: 15px;
 }
 
 .card__text {
   position: relative;
   z-index: 2;
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.5;
+  margin-top: auto;
+  padding-top: 100px;
 }
 
 /* Ссылка "Посмотреть больше" */
@@ -261,10 +305,9 @@
   display: inline-block;
   font-size: 14px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  color: var(--color-white);
-  border-bottom: 1px solid var(--color-white);
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  color: var(--color-black);
   padding-bottom: 2px;
 }
 
@@ -279,15 +322,16 @@
   display: grid;
   grid-template-columns: var(--card-width) 1fr;
   gap: 40px;
-  padding: 60px 50px;
+  padding: 80px 50px;
   background-color: var(--color-white);
   color: var(--color-black);
+  align-items: start;
 }
 
-/* Левая колонка */
+/* Левая колонка — большой круглый чёрный логотип */
 .about__logo {
-  width: 120px;
-  height: 120px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   background-color: var(--color-black);
   display: flex;
@@ -297,16 +341,17 @@
 }
 
 .about__logo-image {
-  width: 70%;
+  width: 60%;
 }
 
 /* Правая колонка */
 .about__title {
   font-size: 30px;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   margin-bottom: 30px;
-  margin-top: 30px; /* выравнивание с центром круга */
+  margin-top: 80px;
 }
 
 .about__text p {
@@ -325,9 +370,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  padding: 30px 50px;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  padding: 40px 50px;
+  background-color: var(--color-white);
+  color: var(--color-black);
 }
 
 /* Адрес в подвале */
@@ -337,19 +382,15 @@
 }
 
 .footer__address-link {
-  text-decoration: none;
-  color: var(--color-white);
+  text-decoration: underline;
+  color: var(--color-black);
 }
 
 .footer__address-link:hover {
-  text-decoration: underline;
+  opacity: 0.7;
 }
 
 /* Меню подвала */
-.footer__menu {
-  /* nav container */
-}
-
 .footer__menu-list {
   list-style: none;
   padding: 0;
@@ -359,16 +400,12 @@
   gap: 8px;
 }
 
-.footer__menu-list-item {
-  /* li */
-}
-
 .footer__menu-link {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-decoration: underline;
-  color: var(--color-white);
+  color: var(--color-black);
 }
 
 .footer__menu-link:hover {
@@ -379,28 +416,31 @@
   text-decoration: none;
 }
 
-/* Социальные сети */
+/* Социальные сети — круглые иконки с обводкой */
 .footer__social-list {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   list-style: none;
   padding: 0;
 }
 
 .footer__social-link {
-  display: block;
-  width: 24px;
-  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-black);
+  border-radius: 50%;
 }
 
 .footer__social-icon {
-  width: 100%;
-  height: 100%;
+  width: 50%;
+  height: 50%;
   object-fit: contain;
-  filter: invert(1);
 }
 
 .footer__social-link:hover {
