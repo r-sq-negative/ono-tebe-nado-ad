@@ -1,1 +1,408 @@
-/* место для вашего кода */
+/* ==========================================
+   ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ И ЦВЕТА
+   ========================================== */
+:root {
+  --color-black: #000;
+  --color-white: #fff;
+  --color-accent: #c0a875;
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+
+  --card-width: 350px;
+  --card-min-height: 386px;
+}
+
+/* ==========================================
+   ШАПКА
+   ========================================== */
+.header {
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+/* Меню */
+.header__menu {
+  /* nav container */
+}
+
+.header__links-list {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  list-style: circle;
+  padding-left: 20px;
+}
+
+.header__links-list-item_no-bullit {
+  list-style: none;
+}
+
+.header__link {
+  text-decoration: none;
+  color: var(--color-white);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.header__link:hover {
+  text-decoration: underline;
+}
+
+.header__link_active {
+  text-decoration: underline;
+}
+
+/* Логотип */
+.header__logo {
+  display: block;
+  width: 160px;
+}
+
+.header__logo-image {
+  display: block;
+  width: 100%;
+}
+
+/* Адрес в шапке */
+.address {
+  font-style: normal;
+}
+
+.header__address {
+  max-width: 160px;
+  justify-self: end;
+  text-align: right;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   ОВЕРЛЕЙ (переиспользуемый класс)
+   ========================================== */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--overlay-bg);
+  z-index: 1;
+}
+
+/* ==========================================
+   ОБЛОЖКА (COVER)
+   ========================================== */
+.cover {
+  position: relative;
+  min-height: 650px;
+  background-image: url(../images/cover.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 60px 50px;
+  color: var(--color-white);
+}
+
+.cover__title {
+  position: relative;
+  z-index: 2;
+  font-size: 150px;
+  font-weight: bold;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Выравнивание слов заголовка */
+.aligned-text {
+  display: block;
+}
+
+.aligned-text_center {
+  align-self: center;
+}
+
+.aligned-text_right {
+  align-self: flex-end;
+}
+
+.letter-spacing-extended {
+  letter-spacing: 0.3em;
+}
+
+.no-letter-spacing {
+  letter-spacing: 0;
+}
+
+/* Блок описания обложки */
+.cover__description {
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+}
+
+.cover__description-text {
+  font-size: 18px;
+  word-spacing: 10px;
+  line-height: 1.5;
+}
+
+/* Кнопка ставки */
+.bet-button {
+  border: 2px solid var(--color-white);
+  background: transparent;
+  color: var(--color-white);
+  padding: 14px 40px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.bet-button:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+/* ==========================================
+   СЕКЦИЯ ЛОТОВ
+   ========================================== */
+.lots {
+  padding: 60px 50px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.lots__heading {
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 40px;
+}
+
+/* Список карточек */
+.lots__card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 40px;
+}
+
+.lots__card-list-item {
+  width: var(--card-width);
+  min-height: var(--card-min-height);
+}
+
+.card-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Карточка */
+.card {
+  position: relative;
+  height: 100%;
+  min-height: var(--card-min-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  color: var(--color-white);
+}
+
+/* Фоны карточек */
+.card_type_film {
+  background-image: url(../images/film.jpg);
+}
+
+.card_type_book {
+  background-image: url(../images/book.jpg);
+}
+
+.card_type_picture {
+  background-image: url(../images/picture.jpg);
+}
+
+.card__title {
+  position: relative;
+  z-index: 2;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+.card__text {
+  position: relative;
+  z-index: 2;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Ссылка "Посмотреть больше" */
+.lots__look-more-link {
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: var(--color-white);
+  border-bottom: 1px solid var(--color-white);
+  padding-bottom: 2px;
+}
+
+.lots__look-more-link:hover {
+  opacity: 0.7;
+}
+
+/* ==========================================
+   СЕКЦИЯ "ОБ АУКЦИОНЕ"
+   ========================================== */
+.about {
+  display: grid;
+  grid-template-columns: var(--card-width) 1fr;
+  gap: 40px;
+  padding: 60px 50px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+/* Левая колонка */
+.about__logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.about__logo-image {
+  width: 70%;
+}
+
+/* Правая колонка */
+.about__title {
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 30px;
+  margin-top: 30px; /* выравнивание с центром круга */
+}
+
+.about__text p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.about__text p:first-child {
+  margin-bottom: 20px;
+}
+
+/* ==========================================
+   ПОДВАЛ
+   ========================================== */
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 30px 50px;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+/* Адрес в подвале */
+.footer .address {
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.footer__address-link {
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.footer__address-link:hover {
+  text-decoration: underline;
+}
+
+/* Меню подвала */
+.footer__menu {
+  /* nav container */
+}
+
+.footer__menu-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer__menu-list-item {
+  /* li */
+}
+
+.footer__menu-link {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  color: var(--color-white);
+}
+
+.footer__menu-link:hover {
+  opacity: 0.7;
+}
+
+.footer__menu-link_active {
+  text-decoration: none;
+}
+
+/* Социальные сети */
+.footer__social-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.footer__social-link {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.footer__social-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: invert(1);
+}
+
+.footer__social-link:hover {
+  opacity: 0.7;
+}
